@@ -39,7 +39,7 @@
                 <li>
                     <a>
                         <span class="glyphicon glyphicon-user"></span>
-                        Hương Hương
+                        Thanh Tú
                     </a>
                 </li>
 

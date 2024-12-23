@@ -34,12 +34,13 @@ function getLoaiTinByTheLoai($idTL){
 }
 
 //hàm đếm loại tin by the loại
-function countTheLoai() {
+function countTheLoai($idTheLoai) {
     $conn = connect();
-    $sql = "SELECT idTheLoai, COUNT(id) AS soLuong FROM loaitin GROUP BY idTheLoai";
+    $sql = "SELECT COUNT(*) AS soLuong FROM loaitin WHERE idTheLoai = $idTheLoai";
     $result = mysqli_query($conn, $sql);
+    $row = mysqli_fetch_assoc($result);
     disConnect($conn);
-    return $result;
+    return $row['soLuong'];
 }
 
 

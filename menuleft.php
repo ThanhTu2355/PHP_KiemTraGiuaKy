@@ -1,7 +1,6 @@
 <?php
 include_once "functions.php";
 $kq = getAllTheLoai();
-$test = countTheLoai();
 ?>
 
 <div class="col-md-3 ">
@@ -11,7 +10,11 @@ $test = countTheLoai();
         </li>
         <?php while ($rowtl = mysqli_fetch_assoc($kq)) { ?>
             <li href="#" class="list-group-item menu1">
-                <?php echo $rowtl["Ten"]; ?>
+                <?php if(countTheLoai($rowtl["id"]) > 0){
+                    echo $rowtl["Ten"];
+                }else{
+                    echo "";
+                } ?>
             </li>
             <ul>
                 <?php

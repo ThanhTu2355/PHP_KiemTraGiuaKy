@@ -1,14 +1,14 @@
 <?php
 include_once "functions.php";
-$idLT = $_GET["idLT"];
-$tinsTheoLoaiTin = getTinByLoaiTin($idLT);
+$txtTim = isset($_POST["txtTim"]) ? $_POST["txtTim"] : $_GEt["txtTim"];
+$tinsTuKhoa = getTinByTuKhoa($txtTim);
 $p = isset($_GET["p"]) ? $_GET["p"] : 1;
 
 $ts1t = 10;
-$tongSoTin = mysqli_num_rows($tinsTheoLoaiTin);
+$tongSoTin = mysqli_num_rows($tinsTuKhoa);
 $tongSoTrang = ceil($tongSoTin / $ts1t);
 $from = ($p - 1) * $ts1t;
-$tinsTheoLoaiTinPhantrang = getTinByLoaiTinPhanTrang($idLT, $from, $ts1t);
+$tinsTheoTuKhoaPhanTrang= getTinByTuKhoaPhanTrang($txtTim, $from, $ts1t);
 $offset = 3;
 $tuTrang = max(1, $p - $offset);
 $denTrang = min($tongSoTrang, $p + $offset);
@@ -25,7 +25,7 @@ $denTrang = min($tongSoTrang, $p + $offset);
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title> Tin theo loại </title>
+    <title> Trang tìm kiếm </title>
 
     <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -60,7 +60,7 @@ $denTrang = min($tongSoTrang, $p + $offset);
                         <h4><b>Panel heading without title</b></h4>
                     </div>
                     <?php
-                    while ($rowTin = mysqli_fetch_assoc($tinsTheoLoaiTinPhantrang)) {
+                    while ($rowTin = mysqli_fetch_assoc($tinsTheoTuKhoaPhanTrang)) {
                         ?>
                         <div class="row-item row">
                             <div class="col-md-3">
@@ -75,8 +75,8 @@ $denTrang = min($tongSoTrang, $p + $offset);
                             <div class="col-md-9">
                                 <h3><?php echo $rowTin["TieuDe"]; ?></h3>
                                 <p><?php echo $rowTin["TomTat"]; ?></p>
-                                <a class="btn btn-primary" href="chitiet.php?idTin=<?php echo $rowTin["id"]; ?>"> Xem thêm <span
-                                        class="glyphicon glyphicon-chevron-right"></span></a>
+                                <a class="btn btn-primary" href="chitiet.php?idTin=<?php echo $rowTin["id"]; ?>"> Xem thêm
+                                    <span class="glyphicon glyphicon-chevron-right"></span></a>
                             </div>
                             <div class="break"></div>
                         </div>
@@ -88,7 +88,7 @@ $denTrang = min($tongSoTrang, $p + $offset);
                         <div class="col-lg-12">
                             <ul class="pagination">
                                 <li>
-                                    <a href="loaitin.php?idLT=<?php echo $idLT; ?>&p=1">&laquo;</a>
+                                    <a href="timkiem.php?txtTim=<?php echo $txtTim; ?>&p=1">&laquo;</a>
                                 </li>
                                 <?php
                                 for ($i = $tuTrang; $i <= $denTrang; $i++) {
@@ -96,12 +96,12 @@ $denTrang = min($tongSoTrang, $p + $offset);
                                     ?>
                                     <li class="<?php echo $active; ?>">
                                         <a
-                                            href="loaitin.php?idLT=<?php echo $idLT; ?>&p=<?php echo $i; ?>"><?php echo $i; ?></a>
+                                            href="timkiem.php?txtTim=<?php echo $txtTim; ?>&p=<?php echo $i; ?>"><?php echo $i; ?></a>
                                     </li>
                                 <?php } ?>
                                 <li>
                                     <a
-                                        href="loaitin.php?idLT=<?php echo $idLT; ?>&p=<?php echo $tongSoTrang; ?>">&raquo;</a>
+                                        href="timkiem.php?txtTim=<?php echo $txtTim; ?>&p=<?php echo $tongSoTrang; ?>">&raquo;</a>
                                 </li>
                             </ul>
                         </div>
@@ -117,7 +117,7 @@ $denTrang = min($tongSoTrang, $p + $offset);
     <!-- end Page Content -->
 
     <?php include_once "footer.php"; ?>
-    
+
     <!-- jQuery -->
     <script src="js/jquery.js"></script>
     <!-- Bootstrap Core JavaScript -->

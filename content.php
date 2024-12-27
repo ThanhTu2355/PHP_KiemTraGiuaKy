@@ -63,7 +63,7 @@ include_once "functions.php";
                             ?>
                             <div class="row-item row">
                                 <h3>
-                                    <a href="#"><?php echo $rowtl["Ten"]; ?></a> |
+                                    <a href="chitiet.php?idTin=<?php echo $rowTinNoiBat["id"]; ?>"><?php echo $rowtl["Ten"]; ?></a> |
                                     <?php
                                     while ($rowlt = mysqli_fetch_assoc($loaiTinTheoTheLoai)) {
                                         ?>
@@ -76,7 +76,7 @@ include_once "functions.php";
                                 ?>
                                 <div class="col-md-12 border-right">
                                     <div class="col-md-3">
-                                        <a href="chitiet.html">
+                                        <a href="chitiet.php?idTin=<?php echo $rowTinNoiBat["id"]; ?>">
                                             <img class="img-responsive" src="img/tintuc/<?php echo $rowTinNoiBat["Hinh"];  ?>" alt="">
                                         </a>
                                     </div>
@@ -84,7 +84,7 @@ include_once "functions.php";
                                     <div class="col-md-9">
                                         <h3><?php echo $rowTinNoiBat["TieuDe"];  ?></h3>
                                         <p><?php echo $rowTinNoiBat["TomTat"];  ?></p>
-                                        <a class="btn btn-primary" href="chitiet.html">Xem thêm<span
+                                        <a class="btn btn-primary" href="chitiet.php?idTin=<?php echo $rowTinNoiBat["id"]; ?>">Xem thêm<span
                                                 class="glyphicon glyphicon-chevron-right"></span></a>
                                     </div>
                                 </div>

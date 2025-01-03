@@ -1,5 +1,10 @@
 <?php
-$dangNhap = true;
+session_start();
+$dangNhap = false;
+if(isset($_SESSION["name"])){
+    $dangNhap = true;
+    $name = $_SESSION["name"];  
+}
 ?>
 
 <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
@@ -36,21 +41,21 @@ $dangNhap = true;
             <ul class="nav navbar-nav pull-right">
                 <?php if (!$dangNhap) { ?>
                     <li>
-                        <a href="dangki.html">Đăng ký</a>
+                        <a href="dangki.php">Đăng ký</a>
                     </li>
                     <li>
-                        <a href="dangnhap.html">Đăng nhập</a>
+                        <a href="dangnhap.php">Đăng nhập</a>
                     </li>
                 <?php } else { ?>
                     <li>
                         <a>
                             <span class="glyphicon glyphicon-user"></span>
-                            Thanh Tú
+                            <?php echo $name; ?>
                         </a>
                     </li>
 
                     <li>
-                        <a href="#">Đăng xuất</a>
+                        <a href="xulydangxuat.php">Đăng xuất</a>
                     </li>
                 <?php } ?>
             </ul>

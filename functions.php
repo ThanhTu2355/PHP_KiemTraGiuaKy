@@ -130,4 +130,33 @@ function getTinByTuKhoaPhanTrang($tukhoa, $from, $st1t)
     return $result;
 }
 
+//hàm trả về user theo email truyền vào
+function getUserByEmail($email)
+{
+    $conn = connect();
+    $sql = "SELECT * FROM users WHERE email = '$email'";
+    $result = mysqli_query($conn, $sql);
+    disConnect($conn);
+    return $result;
+}
+
+//hàm kiểm tra user
+function checkUser($email, $passwordMD5)
+{
+    $conn = connect();
+    $sql = "SELECT * FROM users WHERE email = '$email' AND password = '$passwordMD5'";
+    $result = mysqli_query($conn, $sql);
+    disConnect($conn);
+    return $result;
+}
+
+//hàm thêm user
+function addUser($name, $email, $passwordMD5)
+{
+    $conn = connect();
+    $sql = "INSERT INTO users(name, email, password) VALUES ('$name', '$email', '$passwordMD5')";
+    $result = mysqli_query($conn, $sql);
+    disConnect($conn);
+    return $result;
+}
 ?>
